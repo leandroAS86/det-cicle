@@ -32,7 +32,7 @@ FILES = os.path.join(os.getcwd(), 'files', 'ciclist')
 
 MODEL_PATH = os.path.join(os.getcwd(), 'models', 'yolo_best_saved', 'best.pt') # GPU
 # MODEL_PATH = os.path.join(os.getcwd(), 'models', 'yolo_best_saved', 'best_full_integer_quant.tflite') # CPU
-# MODEL_PATH = os.path.join(os.getcwd(), 'models', 'yolo_best_saved', 'best_full_integer_quant_edgetpu.tflite.tflite') # Raspberry pi 4
+# MODEL_PATH = os.path.join(os.getcwd(), 'models', 'yolo_best_saved', 'best_full_integer_quant_edgetpu.tflite') # Raspberry pi 4
 
 # COMPASS = ['Norte', 'Leste', 'Sul', 'Oeste', 'Norte']
 # COMPASS = ['Jd. Botanico', 'Centro', 'Agua Verde', 'Hauer', 'Jd. Botanico']

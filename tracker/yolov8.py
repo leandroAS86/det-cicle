@@ -1,7 +1,7 @@
 
 from ultralytics import YOLO
 from collections import defaultdict
-from counting.ciclist import Ciclist
+from detcicle.ciclist import Ciclist
 import config
 
 MODEL_PATH = config.MODEL_PATH

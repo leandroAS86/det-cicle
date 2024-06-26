@@ -9,7 +9,7 @@ import config
 from utils.common import *
 from gstream.gstream import *
 from tracker.yolov8 import YoloV8
-from counting.cicle_counting import CicleCounting
+from detcicle.cicle_counting import CicleCounting
 
 FLAGS = flags.FLAGS
 
