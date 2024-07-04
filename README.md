@@ -80,13 +80,11 @@ Em campo, o sistema pode ser iniciado através das muitas possibilidades de inic
 O módulo de carga utilizado foi a placa [`52PI`](https://wiki.52pi.com/index.php?title=EP-0118). Uma cópia da implementação para leitura do estado das baterias utilizando este módulo está disponível no pacote ups.
 
 ## Demostração e testes
-<video width="640" height="480" controls>
-  <source src='./assets/detcicle.mp4' type="video/mp4">
-</video> 
+<video width="640" height="480" src="https://youtu.be/4Omx1HFKCNg?si=hEIzaa_ruUmugwH7"></video>
 
 ## Montagem
 <video width="640" height="480" controls>
-  <source src='./assets/video.mp4' type="video/mp4">
+  <source src='https://youtu.be/N8ai5nzdK3I' type="video/mp4">
 </video> 
 
 | | |
