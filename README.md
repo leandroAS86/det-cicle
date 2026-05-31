@@ -3,10 +3,14 @@
 ## Este projeto foi desenvolvido como tema de pesquisa de mestrado no [Programa de Pós Graduação em Computação Aplicada - PPGCA](https://www.utfpr.edu.br/cursos/coordenacoes/stricto-sensu/ppgca-ct) da [Universidade Tecnologica Federal do Paraná - UTFPR](https://www.utfpr.edu.br/).
 
 ## Proposta :dart:
-DetCicle é um sistema embarcado para contagem automática de ciclistas em cenários urbanos em tempo real, através da captura de imagens por câmeras de vídeo. A contagem é realizada utilizando visão computacional e o modelo YOLOv8 de aprendizagem profunda.
+DetCicle é um sistema embarcado para contagem automática de ciclistas em cenários urbanos, em tempo real, por meio da captura de imagens com câmeras de vídeo. A contagem é realizada por meio de visão computacional e do modelo YOLOv8 de aprendizagem profunda.
 
 ### Resumo 
 A detecção automática de ciclistas no cenário urbano é um campo de estudo em sistemas de transporte inteligentes e smart cities que possibilita gerar dados estruturados importantes que atuam para compreender a dinâmica da utilização do espaço urbano por ciclistas e orientar a criação de políticas públicas de ciclomobilidade e segurança no trânsito. Neste estudo, propomos um sistema embarcado móvel para detecção e contagem de ciclistas que busca ser uma solução leve utilizando a visão computacional e métodos deep learning e tem por característica ser de baixo consumo de energia e fácil manuseio, baseado nas plataformas [Raspberry Pi 4](https://www.raspberrypi.com/) e o acelerador [Edge Tpu Coral](https://www.coral.ai/products/accelerator/). O sistema desenvolvido apresentou um desempenho `F1-score` de `0,9137` para o processamento de vídeo pré-gravado. Em experimentos de contagem em campo, onde a contagem realizada pelo sistema foi comparada com a contagem humana, resultou em uma performance de contagem entre `78,3%` e `82,2%` em relação à contagem visual.
+
+> [!NOTE]
+> A dissertação pode ser encontrada no repositório [RIUT UTFPR](http://repositorio.utfpr.edu.br/jspui/handle/1/34427)
+> O artigo em [Journal of the Brazilian Computer Society](https://doi.org/10.5753/jbcs.2026.4937)
 
 ### Autor 
 * Leandro Alves dos Santos
@@ -19,7 +23,7 @@ A detecção automática de ciclistas no cenário urbano é um campo de estudo e
 
 ## Instalação e uso
 
-Para o desenvolvimento e treinamento do modelo YOLOv8, foi utilizado o sistema operacional [Ubuntu 22.04](https://ubuntu.com/), e para testes em campo, foi utilizada a placa Raspberry Pi 4 com o sistema [Raspbian](https://www.raspberrypi.com/software/). As mesmas versões de bibliotecas de softwares livres foram empregadas em ambos os sistemas.
+Para o desenvolvimento e treinamento do modelo YOLOv8, foi utilizado o sistema operacional [Ubuntu 22.04](https://ubuntu.com/), e para testes em campo, foi utilizada a placa Raspberry Pi 4 com o sistema [Raspbian](https://www.raspberrypi.com/software/). As mesmas versões de bibliotecas de software livre foram utilizadas em ambos os sistemas.
 
 O sistema desenvolvido é baseado nas seguintes linguagens de programação e bibliotecas:
 
@@ -35,16 +39,16 @@ O sistema desenvolvido é baseado nas seguintes linguagens de programação e bi
 
 As configurações padrão do sistema podem ser editadas no arquivo `config.py`. O modelo pode ser selecionado conforme o hardware disponível, comentando ou descomentando a linha que contém a variável `MODEL_PATH`.
 
-Se a máquina estiver equipada com GPU, o modelo `best.pt` é mais adequado; caso contrário, o modelo `best_full_integer_quant.tflite` é otimizado para execução em CPU. No Raspberry Pi, o modelo `best_full_integer_quant_edgetpu.tflite` tem melhor desempenho de processamento. Os modelos `.tflite` são quantizados em 8 bits.
+Se a máquina estiver equipada com GPU, o modelo `best.pt` é mais adequado; caso contrário, o modelo `best_full_integer_quant.tflite` é otimizado para execução em CPU. No Raspberry Pi, o modelo `best_full_integer_quant_edgetpu.tflite` apresenta melhor desempenho de processamento. Os modelos `.tflite` são quantizados para 8 bits.
 
-Para executar o sistema para predição em imagens ou vídeo em um desktop ou notebook, pode-se utilizar o seguinte comando:
+Para executar o sistema de predição em imagens ou vídeo em um desktop ou notebook, pode-se utilizar o seguinte comando:
 
 ```
 cd det-cicle
 python ciclist-predict.py --mode=video
 ```
 
-Algumas outras variáveis podem ser passadas como parâmetros via CLI.
+Outras variáveis também podem ser passadas como parâmetros via CLI.
 
 As seguintes tags são aceitas:
 
@@ -57,36 +61,34 @@ As seguintes tags são aceitas:
   
   --mode: Modo de operação do sistema: image, video ou capture
   
-  --path: Local para carregar os arquivos de imagens ou video
+  --path: Local para carregar os arquivos de imagens ou vídeo
   
   --result: Local para salvar o resultado
   
-  --[no]save: Salvar inferências em video pré gravado (default: 'false')
+  --[no]save: Salvar inferências em vídeo pré-gravado (default: 'false')
   
   --time: Tempo de captura em segundos pelo sistema (default: '60.0')
 
   --[no]debug: Modo de depuração (default: 'false')
 ```
 
-Na Raspberry Pi 4, deve ser passado `--mode=capture` para predição a partir de captura pela câmera de vídeo.. 
+No Raspberry Pi 4, deve ser passado `--mode=capture` para predição a partir de uma captura pela câmera de vídeo. 
 ```
 python ciclist-predict.py --mode=capture
 ```
 
-O sistema foi desenvolvido apenas com a câmera [Rapberry Pi Camera](https://www.raspberrypi.com/products/camera-module-3/). Outros modelos de câmeras USB podem ser utilizados, fazendo as adaptações necessárias no código.
+O sistema foi desenvolvido apenas com a câmera [Rapberry Pi Camera](https://www.raspberrypi.com/products/camera-module-3/). Outros modelos de câmeras USB podem ser utilizados, com as adaptações necessárias no código.
 
-Em campo, o sistema pode ser iniciado através das muitas possibilidades de iniciar junto com o sistema operacional. Uma das formas mais práticas é incluir o comando no arquivo `.bashrc`. Outra possibilidade é conectar-se à Raspberry Pi via `SSH` utilizando um tablet ou mesmo um celular e então iniciar manualmente.
+Em campo, o sistema pode ser iniciado por meio de diversas possibilidades, em conjunto com o sistema operacional. Uma das formas mais práticas é incluir o comando no arquivo `.bashrc`. Outra possibilidade é conectar-se à Raspberry Pi via `SSH` utilizando um tablet ou mesmo um celular e, então, iniciar manualmente.
 
 O módulo de carga utilizado foi a placa [`52PI`](https://wiki.52pi.com/index.php?title=EP-0118). Uma cópia da implementação para leitura do estado das baterias utilizando este módulo está disponível no pacote ups.
 
-## Demostração e testes
-<video width="640" height="480" src="https://youtu.be/4Omx1HFKCNg?si=hEIzaa_ruUmugwH7"></video>
+## Demonstração e testes
+[![](https://img.youtube.com/vi/4Omx1HFKCNg/maxresdefault.jpg)](https://youtu.be/4Omx1HFKCNg)
+
+[![](https://img.youtube.com/vi/N8ai5nzdK3I/maxresdefault.jpg)](https://youtu.be/N8ai5nzdK3I)
 
 ## Montagem
-<video width="640" height="480" controls>
-  <source src='https://youtu.be/N8ai5nzdK3I' type="video/mp4">
-</video> 
-
 | | |
 |-|-|
 | ![](./assets/2433.jpg) | ![](./assets/2518.jpg)  |
